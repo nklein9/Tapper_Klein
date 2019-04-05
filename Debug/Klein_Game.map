@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v18.1.5                     
 ******************************************************************************
->> Linked Mon Mar 25 15:10:30 2019
+>> Linked Tue Mar 26 20:36:54 2019
 
 OUTPUT FILE NAME:   <Klein_Game.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00004400
@@ -20,7 +20,7 @@ MEMORY CONFIGURATION
   INFOA                 00001980   00000080  00000000  00000080  RWIX
   USBRAM                00001c00   00000800  00000000  00000800  RWIX
   RAM                   00002400   00002000  0000133f  00000cc1  RWIX
-  FLASH                 00004400   0000bb80  000004ca  0000b6b6  RWIX
+  FLASH                 00004400   0000bb80  000004e0  0000b6a0  RWIX
   INT00                 0000ff80   00000002  00000000  00000002  RWIX
   INT01                 0000ff82   00000002  00000000  00000002  RWIX
   INT02                 0000ff84   00000002  00000000  00000002  RWIX
@@ -85,7 +85,7 @@ MEMORY CONFIGURATION
   INT61                 0000fffa   00000002  00000002  00000000  RWIX
   INT62                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FLASH2                00010000   00014400  0000308a  00011376  RWIX
+  FLASH2                00010000   00014400  000030f0  00011310  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -146,24 +146,25 @@ section   page    origin      length       input sections
                   00004434    0000000e     timing.obj (.text:_isr:TIMER0_A0_ISR)
                   00004442    00000008     rts430x_lc_rd_eabi.lib : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
 
-.cinit     0    00004884    00000046     
-                  00004884    00000024     (.cinit..data.load) [load image, compression = lzss]
-                  000048a8    0000000c     (__TI_handler_table)
-                  000048b4    00000006     (.cinit..bss.load) [load image, compression = zero_init]
-                  000048ba    00000010     (__TI_cinit_table)
+.cinit     0    00004898    00000048     
+                  00004898    00000025     (.cinit..data.load) [load image, compression = lzss]
+                  000048bd    00000001     --HOLE-- [fill = 0]
+                  000048be    0000000c     (__TI_handler_table)
+                  000048ca    00000006     (.cinit..bss.load) [load image, compression = zero_init]
+                  000048d0    00000010     (__TI_cinit_table)
 
 .binit     0    00004400    00000000     
 
 .init_array 
 *          0    00004400    00000000     UNINITIALIZED
 
-.const     0    0000444a    0000043a     
-                  0000444a    0000011a     klein_game.obj (.const:.string)
-                  00004564    00000116     game.obj (.const:.string)
-                  0000467a    00000100     strcasecmp.obj (.const:.string:charmap)
-                  0000477a    000000c4     subsystem.obj (.const:.string)
-                  0000483e    00000030     terminal.obj (.const:.string)
-                  0000486e    00000016     main.obj (.const:.string)
+.const     0    0000444a    0000044e     
+                  0000444a    0000012e     klein_game.obj (.const:.string)
+                  00004578    00000116     game.obj (.const:.string)
+                  0000468e    00000100     strcasecmp.obj (.const:.string:charmap)
+                  0000478e    000000c4     subsystem.obj (.const:.string)
+                  00004852    00000030     terminal.obj (.const:.string)
+                  00004882    00000016     main.obj (.const:.string)
 
 RTC        0    0000ffd2    00000002     
                   0000ffd2    00000002     rts430x_lc_rd_eabi.lib : int41.asm.obj (.int41)
@@ -242,155 +243,155 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.c.obj (.reset)
 
-.text      0    00010000    0000308a     
+.text      0    00010000    000030f0     
                   00010000    00000254     subsystem.obj (.text:SystemCallback)
                   00010254    00000200     hal_uart.obj (.text:hal_UART_Init)
                   00010454    000001e6     game.obj (.text:Game_Callback)
                   0001063a    000001d4     buffer_printf.obj (.text:Buffer_vprintf)
                   0001080e    000001a0     uart.obj (.text:UART_Tick)
-                  000109ae    0000014a     klein_game.obj (.text:Play)
-                  00010af8    00000136     klein_game.obj (.text:SendPatron)
-                  00010c2e    00000134     subsystem.obj (.text:ProcessMsg)
-                  00010d62    00000118     list.obj (.text:Link)
-                  00010e7a    00000114     klein_game.obj (.text:CheckCollisionFull)
-                  00010f8e    000000f8     list.obj (.text:Unlink)
-                  00011086    000000d4     klein_game.obj (.text:Serve)
-                  0001115a    000000be     list.obj (.text:List_LinkItem)
-                  00011218    000000b8     task.obj (.text:SystemTick)
-                  000112d0    000000b8     rts430x_lc_rd_eabi.lib : fs_mpy.asm.obj (.text)
-                  00011388    000000b4     buffer_printf.obj (.text:Buffer_HexN)
-                  0001143c    000000b0     game.obj (.text:Game_DrawRect)
-                  000114ec    000000a8     list.obj (.text:List_Link)
-                  00011594    0000009e     list.obj (.text:FindUnusedLink)
-                  00011632    0000009e     uart.obj (.text:UART_Init)
-                  000116d0    0000009c     buffer_printf.obj (.text:Buffer_Float)
-                  0001176c    0000009c     uart.obj (.text:UART_UnregisterReceiver)
-                  00011808    00000090     buffer.obj (.text:Buffer_Enqueue)
-                  00011898    0000008c     list.obj (.text:List_Init)
-                  00011924    0000008c     task.obj (.text:Task_Remove)
-                  000119b0    0000008c     rts430x_lc_rd_eabi.lib : cvtdf.c.obj (.text:__mspabi_cvtdf)
-                  00011a3c    00000080     subsystem.obj (.text:Receiver)
-                  00011abc    0000007e     rts430x_lc_rd_eabi.lib : fs_tol.asm.obj (.text)
-                  00011b3a    0000007c     subsystem.obj (.text:Subsystem_Init)
-                  00011bb6    0000007a     klein_game.obj (.text:UpdateGlasses)
-                  00011c30    00000078     main.obj (.text:SetClk24MHz)
-                  00011ca8    00000076     rts430x_lc_rd_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  00011d1e    00000074     klein_game.obj (.text:Return)
-                  00011d92    00000070     klein_game.obj (.text:CheckCollisionPatron)
-                  00011e02    00000070     task.obj (.text:Task_Init)
-                  00011e72    00000068     rts430x_lc_rd_eabi.lib : fs_toi.asm.obj (.text)
-                  00011eda    00000064     list.obj (.text:FindLinkByItem)
-                  00011f3e    00000062     buffer_printf.obj (.text:Buffer_uint32)
-                  00011fa0    0000005a     game.obj (.text:Cursor)
-                  00011ffa    0000005a     game.obj (.text:Game_Register)
-                  00012054    0000005a     klein_game.obj (.text:Receiver)
-                  000120ae    0000005a     subsystem.obj (.text:Subsystem_Write)
-                  00012108    00000058     klein_game.obj (.text:Callback)
-                  00012160    00000058     rts430x_lc_rd_eabi.lib : div32u.asm.obj (.text)
-                  000121b8    00000056     uart.obj (.text:UART_Tx_Start)
-                  0001220e    00000054     klein_game.obj (.text:GameOver)
-                  00012262    00000054     list.obj (.text:List_AddIndirect)
-                  000122b6    00000054     rts430x_lc_rd_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
-                  0001230a    00000052     buffer_printf.obj (.text:Buffer_uint16)
-                  0001235c    00000050     klein_game.obj (.text:MoveRightGlass)
-                  000123ac    0000004e     klein_game.obj (.text:MoveLeftGlass)
-                  000123fa    0000004e     main.obj (.text:SetVcoreUp)
-                  00012448    0000004e     uart.obj (.text:UART_Tx_Handler)
-                  00012496    0000004c     game.obj (.text:Game_Log)
-                  000124e2    0000004c     subsystem.obj (.text:Subsystem_SystemInit)
-                  0001252e    0000004a     task.obj (.text:Task_Schedule)
-                  00012578    00000046     klein_game.obj (.text:MoveDown)
-                  000125be    00000046     main.obj (.text:main)
-                  00012604    00000044     subsystem.obj (.text:Log_Header)
-                  00012648    00000044     task.obj (.text:RollTimer)
-                  0001268c    00000044     uart.obj (.text:UART_RegisterReceiver)
-                  000126d0    00000040     rts430x_lc_rd_eabi.lib : rand.c.obj (.text:rand)
-                  00012710    0000003e     buffer.obj (.text:Buffer_Dequeue)
-                  0001274e    0000003e     klein_game.obj (.text:MoveRightPatron)
-                  0001278c    0000003e     timing.obj (.text:TimeSince)
-                  000127ca    0000003e     uart.obj (.text:UART_Rx_Handler)
-                  00012808    0000003e     rts430x_lc_rd_eabi.lib : lsl32.asm.obj (.text:l_lsl_const)
-                  00012846    0000003e                            : lsr32.asm.obj (.text:l_lsr_const)
-                  00012884    0000003c     game.obj (.text:Game_Printf)
-                  000128c0    0000003a     klein_game.obj (.text:MoveUp)
-                  000128fa    0000003a     random_int.obj (.text:random_int)
-                  00012934    00000038     klein_game.obj (.text:CheckCollisionEmpty)
-                  0001296c    00000036     game.obj (.text:Game_CharXY)
-                  000129a2    00000034     game.obj (.text:Game_Init)
-                  000129d6    00000034     list.obj (.text:GetUnusedLink)
-                  00012a0a    00000032     terminal.obj (.text:Terminal_CharXY)
-                  00012a3c    00000032     uart.obj (.text:UART_printf)
-                  00012a6e    0000002e     uart.obj (.text:UART_vprintf)
-                  00012a9c    0000002e     strcasecmp.obj (.text:strcasecmp)
-                  00012aca    0000002c     subsystem.obj (.text:Subsystem_GetName)
-                  00012af6    0000002c     rts430x_lc_rd_eabi.lib : div16s.asm.obj (.text)
-                  00012b22    0000002a     buffer.obj (.text:Buffer_Init)
-                  00012b4c    0000002a     buffer_printf.obj (.text:Buffer_int32)
-                  00012b76    0000002a     game.obj (.text:Game_IsTransmitting)
-                  00012ba0    0000002a     uart.obj (.text:UART_WriteByte)
-                  00012bca    00000028     timing.obj (.text:DelayMs)
-                  00012bf2    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
-                  00012c16    00000024     hal_uart.obj (.text:hal_UART_TxInterruptEnabled)
-                  00012c3a    00000024     rts430x_lc_rd_eabi.lib : mult32_f5hw.asm.obj (.text)
-                  00012c5e    00000022     buffer_printf.obj (.text:Buffer_int16)
-                  00012c80    00000022     klein_game.obj (.text:TapperGame_Init)
-                  00012ca2    00000020     list.obj (.text:List_GetFirst)
-                  00012cc2    00000020     hal_uart.obj (.text:hal_UART_DataAvailable)
-                  00012ce2    00000020     hal_uart.obj (.text:hal_UART_SpaceAvailable)
-                  00012d02    0000001e     list.obj (.text:List_Remove)
-                  00012d20    0000001e     timing.obj (.text:Timing_Init)
-                  00012d3e    0000001e     uart.obj (.text:UART_IsTransmitting)
-                  00012d5c    0000001c     terminal.obj (.text:Terminal_HideCursor)
-                  00012d78    0000001c     terminal.obj (.text:Terminal_ShowCursor)
-                  00012d94    0000001c     hal_uart.obj (.text:hal_UART_RxByte)
-                  00012db0    0000001a     buffer_printf.obj (.text:Buffer_Str)
-                  00012dca    0000001a     game.obj (.text:Game_RegisterCallback)
-                  00012de4    0000001a     task.obj (.text:SortTask)
-                  00012dfe    00000018     list.obj (.text:List_GetNext)
-                  00012e16    00000018     timing.obj (.text:hal_Timing_Init)
-                  00012e2e    00000018     rts430x_lc_rd_eabi.lib : mult16_f5hw.asm.obj (.text)
-                  00012e46    00000016     game.obj (.text:Game_Bell)
-                  00012e5c    00000016     game.obj (.text:Game_ClearScreen)
-                  00012e72    00000016     klein_game.obj (.text:Help)
-                  00012e88    00000016     subsystem.obj (.text:LogStr)
-                  00012e9e    00000016     terminal.obj (.text:Terminal_ClearScreen)
-                  00012eb4    00000016     hal_uart.obj (.text:hal_UART_ClearRxIF)
-                  00012eca    00000016     hal_uart.obj (.text:hal_UART_Disable)
-                  00012ee0    00000016     hal_uart.obj (.text:hal_UART_DisableTxInterrupt)
-                  00012ef6    00000016     hal_uart.obj (.text:hal_UART_Enable)
-                  00012f0c    00000016     hal_uart.obj (.text:hal_UART_EnableRxInterrupt)
-                  00012f22    00000016     hal_uart.obj (.text:hal_UART_EnableTxInterrupt)
-                  00012f38    00000016     hal_uart.obj (.text:hal_UART_TxByte)
-                  00012f4e    00000016     rts430x_lc_rd_eabi.lib : div16u.asm.obj (.text)
-                  00012f64    00000016                            : rand.c.obj (.text:srand)
-                  00012f7a    00000014     klein_game.obj (.text:DeleteEmpty)
-                  00012f8e    00000014     klein_game.obj (.text:DeleteFull)
-                  00012fa2    00000014     klein_game.obj (.text:DeletePatron)
-                  00012fb6    00000014     timing.obj (.text:Timing_Roll)
-                  00012fca    00000014     rts430x_lc_rd_eabi.lib : memcpy.c.obj (.text:memcpy)
-                  00012fde    00000012                            : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  00012ff0    0000000e     task.obj (.text:IdentifyTask)
-                  00012ffe    0000000c     list.obj (.text:List_UnlinkFirst)
-                  0001300a    0000000a     game.obj (.text:Game_RegisterPlayer1Receiver)
-                  00013014    0000000a     game.obj (.text:Game_UnregisterPlayer1Receiver)
-                  0001301e    0000000a     klein_game.obj (.text:ScorePoint)
-                  00013028    0000000a     timing.obj (.text:TimeNow)
-                  00013032    0000000a     rts430x_lc_rd_eabi.lib : lsl16.asm.obj (.text)
-                  0001303c    00000008     game.obj (.text:Game_HideCursor)
-                  00013044    00000008     game.obj (.text:Game_ShowCursor)
-                  0001304c    00000008     subsystem.obj (.text:Log_GetEcho)
-                  00013054    00000006     list.obj (.text:List_SetIdentifyFunction)
-                  0001305a    00000006     list.obj (.text:List_SetSortFunction)
-                  00013060    00000006     subsystem.obj (.text:Log_EchoOff)
-                  00013066    00000006     subsystem.obj (.text:Log_EchoOn)
-                  0001306c    00000006     klein_game.obj (.text:LosePoint)
-                  00013072    00000006     rts430x_lc_rd_eabi.lib : exit.c.obj (.text:abort)
-                  00013078    00000004     buffer.obj (.text:Buffer_GetSize)
-                  0001307c    00000004     game.obj (.text:Play)
-                  00013080    00000004     rts430x_lc_rd_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
-                  00013084    00000002     game.obj (.text:Game_GameOver)
-                  00013086    00000002     rts430x_lc_rd_eabi.lib : _lock.c.obj (.text:_nop)
-                  00013088    00000002                            : startup.c.obj (.text:_system_post_cinit)
+                  000109ae    0000014e     klein_game.obj (.text:Play)
+                  00010afc    00000136     klein_game.obj (.text:SendPatron)
+                  00010c32    00000134     subsystem.obj (.text:ProcessMsg)
+                  00010d66    00000118     list.obj (.text:Link)
+                  00010e7e    00000108     klein_game.obj (.text:CheckCollisionFull)
+                  00010f86    000000f8     list.obj (.text:Unlink)
+                  0001107e    000000d4     klein_game.obj (.text:Serve)
+                  00011152    000000be     list.obj (.text:List_LinkItem)
+                  00011210    000000b8     task.obj (.text:SystemTick)
+                  000112c8    000000b8     rts430x_lc_rd_eabi.lib : fs_mpy.asm.obj (.text)
+                  00011380    000000b4     buffer_printf.obj (.text:Buffer_HexN)
+                  00011434    000000b0     game.obj (.text:Game_DrawRect)
+                  000114e4    000000a8     list.obj (.text:List_Link)
+                  0001158c    0000009e     list.obj (.text:FindUnusedLink)
+                  0001162a    0000009e     uart.obj (.text:UART_Init)
+                  000116c8    0000009c     buffer_printf.obj (.text:Buffer_Float)
+                  00011764    0000009c     uart.obj (.text:UART_UnregisterReceiver)
+                  00011800    00000090     buffer.obj (.text:Buffer_Enqueue)
+                  00011890    0000008c     list.obj (.text:List_Init)
+                  0001191c    0000008c     task.obj (.text:Task_Remove)
+                  000119a8    0000008c     rts430x_lc_rd_eabi.lib : cvtdf.c.obj (.text:__mspabi_cvtdf)
+                  00011a34    00000080     subsystem.obj (.text:Receiver)
+                  00011ab4    00000080     klein_game.obj (.text:ShowScore)
+                  00011b34    0000007e     rts430x_lc_rd_eabi.lib : fs_tol.asm.obj (.text)
+                  00011bb2    0000007c     subsystem.obj (.text:Subsystem_Init)
+                  00011c2e    0000007a     klein_game.obj (.text:UpdateGlasses)
+                  00011ca8    00000078     main.obj (.text:SetClk24MHz)
+                  00011d20    00000076     rts430x_lc_rd_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  00011d96    00000070     klein_game.obj (.text:CheckCollisionPatron)
+                  00011e06    00000070     task.obj (.text:Task_Init)
+                  00011e76    0000006e     klein_game.obj (.text:Return)
+                  00011ee4    00000068     rts430x_lc_rd_eabi.lib : fs_toi.asm.obj (.text)
+                  00011f4c    00000064     list.obj (.text:FindLinkByItem)
+                  00011fb0    00000062     buffer_printf.obj (.text:Buffer_uint32)
+                  00012012    0000005a     game.obj (.text:Cursor)
+                  0001206c    0000005a     game.obj (.text:Game_Register)
+                  000120c6    0000005a     klein_game.obj (.text:Receiver)
+                  00012120    0000005a     subsystem.obj (.text:Subsystem_Write)
+                  0001217a    00000058     klein_game.obj (.text:Callback)
+                  000121d2    00000058     rts430x_lc_rd_eabi.lib : div32u.asm.obj (.text)
+                  0001222a    00000056     uart.obj (.text:UART_Tx_Start)
+                  00012280    00000054     list.obj (.text:List_AddIndirect)
+                  000122d4    00000054     rts430x_lc_rd_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
+                  00012328    00000052     buffer_printf.obj (.text:Buffer_uint16)
+                  0001237a    00000050     klein_game.obj (.text:MoveRightGlass)
+                  000123ca    0000004e     klein_game.obj (.text:GameOver)
+                  00012418    0000004e     klein_game.obj (.text:MoveLeftGlass)
+                  00012466    0000004e     main.obj (.text:SetVcoreUp)
+                  000124b4    0000004e     uart.obj (.text:UART_Tx_Handler)
+                  00012502    0000004c     game.obj (.text:Game_Log)
+                  0001254e    0000004c     subsystem.obj (.text:Subsystem_SystemInit)
+                  0001259a    0000004a     task.obj (.text:Task_Schedule)
+                  000125e4    00000046     klein_game.obj (.text:MoveDown)
+                  0001262a    00000046     main.obj (.text:main)
+                  00012670    00000044     subsystem.obj (.text:Log_Header)
+                  000126b4    00000044     task.obj (.text:RollTimer)
+                  000126f8    00000044     uart.obj (.text:UART_RegisterReceiver)
+                  0001273c    00000040     rts430x_lc_rd_eabi.lib : rand.c.obj (.text:rand)
+                  0001277c    0000003e     buffer.obj (.text:Buffer_Dequeue)
+                  000127ba    0000003e     klein_game.obj (.text:MoveRightPatron)
+                  000127f8    0000003e     timing.obj (.text:TimeSince)
+                  00012836    0000003e     uart.obj (.text:UART_Rx_Handler)
+                  00012874    0000003e     rts430x_lc_rd_eabi.lib : lsl32.asm.obj (.text:l_lsl_const)
+                  000128b2    0000003e                            : lsr32.asm.obj (.text:l_lsr_const)
+                  000128f0    0000003c     game.obj (.text:Game_Printf)
+                  0001292c    0000003a     klein_game.obj (.text:MoveUp)
+                  00012966    0000003a     random_int.obj (.text:random_int)
+                  000129a0    00000036     game.obj (.text:Game_CharXY)
+                  000129d6    00000034     klein_game.obj (.text:CheckCollisionEmpty)
+                  00012a0a    00000034     game.obj (.text:Game_Init)
+                  00012a3e    00000034     list.obj (.text:GetUnusedLink)
+                  00012a72    00000032     terminal.obj (.text:Terminal_CharXY)
+                  00012aa4    00000032     uart.obj (.text:UART_printf)
+                  00012ad6    0000002e     uart.obj (.text:UART_vprintf)
+                  00012b04    0000002e     strcasecmp.obj (.text:strcasecmp)
+                  00012b32    0000002c     subsystem.obj (.text:Subsystem_GetName)
+                  00012b5e    0000002c     rts430x_lc_rd_eabi.lib : div16s.asm.obj (.text)
+                  00012b8a    0000002a     buffer.obj (.text:Buffer_Init)
+                  00012bb4    0000002a     buffer_printf.obj (.text:Buffer_int32)
+                  00012bde    0000002a     game.obj (.text:Game_IsTransmitting)
+                  00012c08    0000002a     uart.obj (.text:UART_WriteByte)
+                  00012c32    00000028     timing.obj (.text:DelayMs)
+                  00012c5a    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
+                  00012c7e    00000024     hal_uart.obj (.text:hal_UART_TxInterruptEnabled)
+                  00012ca2    00000024     rts430x_lc_rd_eabi.lib : mult32_f5hw.asm.obj (.text)
+                  00012cc6    00000022     buffer_printf.obj (.text:Buffer_int16)
+                  00012ce8    00000022     klein_game.obj (.text:TapperGame_Init)
+                  00012d0a    00000020     list.obj (.text:List_GetFirst)
+                  00012d2a    00000020     hal_uart.obj (.text:hal_UART_DataAvailable)
+                  00012d4a    00000020     hal_uart.obj (.text:hal_UART_SpaceAvailable)
+                  00012d6a    0000001e     list.obj (.text:List_Remove)
+                  00012d88    0000001e     timing.obj (.text:Timing_Init)
+                  00012da6    0000001e     uart.obj (.text:UART_IsTransmitting)
+                  00012dc4    0000001c     terminal.obj (.text:Terminal_HideCursor)
+                  00012de0    0000001c     terminal.obj (.text:Terminal_ShowCursor)
+                  00012dfc    0000001c     hal_uart.obj (.text:hal_UART_RxByte)
+                  00012e18    0000001a     buffer_printf.obj (.text:Buffer_Str)
+                  00012e32    0000001a     game.obj (.text:Game_RegisterCallback)
+                  00012e4c    0000001a     task.obj (.text:SortTask)
+                  00012e66    00000018     list.obj (.text:List_GetNext)
+                  00012e7e    00000018     timing.obj (.text:hal_Timing_Init)
+                  00012e96    00000018     rts430x_lc_rd_eabi.lib : mult16_f5hw.asm.obj (.text)
+                  00012eae    00000016     game.obj (.text:Game_Bell)
+                  00012ec4    00000016     game.obj (.text:Game_ClearScreen)
+                  00012eda    00000016     klein_game.obj (.text:Help)
+                  00012ef0    00000016     subsystem.obj (.text:LogStr)
+                  00012f06    00000016     terminal.obj (.text:Terminal_ClearScreen)
+                  00012f1c    00000016     hal_uart.obj (.text:hal_UART_ClearRxIF)
+                  00012f32    00000016     hal_uart.obj (.text:hal_UART_Disable)
+                  00012f48    00000016     hal_uart.obj (.text:hal_UART_DisableTxInterrupt)
+                  00012f5e    00000016     hal_uart.obj (.text:hal_UART_Enable)
+                  00012f74    00000016     hal_uart.obj (.text:hal_UART_EnableRxInterrupt)
+                  00012f8a    00000016     hal_uart.obj (.text:hal_UART_EnableTxInterrupt)
+                  00012fa0    00000016     hal_uart.obj (.text:hal_UART_TxByte)
+                  00012fb6    00000016     rts430x_lc_rd_eabi.lib : div16u.asm.obj (.text)
+                  00012fcc    00000016                            : rand.c.obj (.text:srand)
+                  00012fe2    00000014     klein_game.obj (.text:DeleteEmpty)
+                  00012ff6    00000014     klein_game.obj (.text:DeleteFull)
+                  0001300a    00000014     klein_game.obj (.text:DeletePatron)
+                  0001301e    00000014     timing.obj (.text:Timing_Roll)
+                  00013032    00000014     rts430x_lc_rd_eabi.lib : memcpy.c.obj (.text:memcpy)
+                  00013046    00000012                            : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00013058    0000000e     task.obj (.text:IdentifyTask)
+                  00013066    0000000e     klein_game.obj (.text:ScorePoint)
+                  00013074    0000000c     list.obj (.text:List_UnlinkFirst)
+                  00013080    0000000a     game.obj (.text:Game_RegisterPlayer1Receiver)
+                  0001308a    0000000a     game.obj (.text:Game_UnregisterPlayer1Receiver)
+                  00013094    0000000a     timing.obj (.text:TimeNow)
+                  0001309e    0000000a     rts430x_lc_rd_eabi.lib : lsl16.asm.obj (.text)
+                  000130a8    00000008     game.obj (.text:Game_HideCursor)
+                  000130b0    00000008     game.obj (.text:Game_ShowCursor)
+                  000130b8    00000008     subsystem.obj (.text:Log_GetEcho)
+                  000130c0    00000006     list.obj (.text:List_SetIdentifyFunction)
+                  000130c6    00000006     list.obj (.text:List_SetSortFunction)
+                  000130cc    00000006     subsystem.obj (.text:Log_EchoOff)
+                  000130d2    00000006     subsystem.obj (.text:Log_EchoOn)
+                  000130d8    00000006     rts430x_lc_rd_eabi.lib : exit.c.obj (.text:abort)
+                  000130de    00000004     buffer.obj (.text:Buffer_GetSize)
+                  000130e2    00000004     game.obj (.text:Play)
+                  000130e6    00000004     rts430x_lc_rd_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  000130ea    00000002     game.obj (.text:Game_GameOver)
+                  000130ec    00000002     rts430x_lc_rd_eabi.lib : _lock.c.obj (.text:_nop)
+                  000130ee    00000002                            : startup.c.obj (.text:_system_post_cinit)
 
 MODULE SUMMARY
 
@@ -398,7 +399,7 @@ MODULE SUMMARY
        ------                       ----    -------   -------
     .\
        uart.obj                     1192    0         2173   
-       klein_game.obj               2276    282       96     
+       klein_game.obj               2378    302       96     
        game.obj                     1238    278       785    
        task.obj                     618     0         1453   
        subsystem.obj                1476    196       236    
@@ -412,7 +413,7 @@ MODULE SUMMARY
        terminal.obj                 128     48        0      
        random_int.obj               58      0         1      
     +--+----------------------------+-------+---------+---------+
-       Total:                       11186   1086      4755   
+       Total:                       11288   1106      4755   
                                                              
     C:\ti\ccsv8\tools\compiler\ti-cgt-msp430_18.1.5.LTS\lib\rts430x_lc_rd_eabi.lib
        fs_mpy.asm.obj               184     0         0      
@@ -463,21 +464,21 @@ MODULE SUMMARY
        Total:                       1314    42        12     
                                                              
        Stack:                       0       0         160    
-       Linker Generated:            0       70        0      
+       Linker Generated:            0       71        0      
     +--+----------------------------+-------+---------+---------+
-       Grand Total:                 12500   1198      4927   
+       Grand Total:                 12602   1219      4927   
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 000048ba records: 2, size/record: 8, table size: 16
-	.data: load addr=00004884, load size=00000024 bytes, run addr=00003672, run size=0000002e bytes, compression=lzss
-	.bss: load addr=000048b4, load size=00000006 bytes, run addr=00002400, run size=00001271 bytes, compression=zero_init
+__TI_cinit_table @ 000048d0 records: 2, size/record: 8, table size: 16
+	.data: load addr=00004898, load size=00000025 bytes, run addr=00003672, run size=0000002e bytes, compression=lzss
+	.bss: load addr=000048ca, load size=00000006 bytes, run addr=00002400, run size=00001271 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 000048a8 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 000048be records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_lzss
 	index: 2, handler: __TI_decompress_none
@@ -569,19 +570,19 @@ address   name
 00000732  ADC12MEM9                              
 00000733  ADC12MEM9_H                            
 00000732  ADC12MEM9_L                            
-00012710  Buffer_Dequeue                         
-00011808  Buffer_Enqueue                         
-000116d0  Buffer_Float                           
-00013078  Buffer_GetSize                         
-00011388  Buffer_HexN                            
-00012b22  Buffer_Init                            
-00012db0  Buffer_Str                             
-00012c5e  Buffer_int16                           
-00012b4c  Buffer_int32                           
-0001230a  Buffer_uint16                          
-00011f3e  Buffer_uint32                          
+0001277c  Buffer_Dequeue                         
+00011800  Buffer_Enqueue                         
+000116c8  Buffer_Float                           
+000130de  Buffer_GetSize                         
+00011380  Buffer_HexN                            
+00012b8a  Buffer_Init                            
+00012e18  Buffer_Str                             
+00012cc6  Buffer_int16                           
+00012bb4  Buffer_int32                           
+00012328  Buffer_uint16                          
+00011fb0  Buffer_uint32                          
 0001063a  Buffer_vprintf                         
-00013072  C$$EXIT                                
+000130d8  C$$EXIT                                
 000008c0  CBCTL0                                 
 000008c1  CBCTL0_H                               
 000008c0  CBCTL0_L                               
@@ -640,7 +641,7 @@ address   name
 00000506  DMACTL3                                
 00000508  DMACTL4                                
 0000050e  DMAIV                                  
-00012bca  DelayMs                                
+00012c32  DelayMs                                
 00000140  FCTL1                                  
 00000141  FCTL1_H                                
 00000140  FCTL1_L                                
@@ -650,36 +651,36 @@ address   name
 00000146  FCTL4                                  
 00000147  FCTL4_H                                
 00000146  FCTL4_L                                
-00012e46  Game_Bell                              
-0001296c  Game_CharXY                            
-00012e5c  Game_ClearScreen                       
-0001143c  Game_DrawRect                          
-00013084  Game_GameOver                          
-0001303c  Game_HideCursor                        
-000129a2  Game_Init                              
-00012b76  Game_IsTransmitting                    
-00012496  Game_Log                               
-00012884  Game_Printf                            
-00011ffa  Game_Register                          
-00012dca  Game_RegisterCallback                  
-0001300a  Game_RegisterPlayer1Receiver           
-00013044  Game_ShowCursor                        
-00013014  Game_UnregisterPlayer1Receiver         
-00012262  List_AddIndirect                       
-00012ca2  List_GetFirst                          
-00012dfe  List_GetNext                           
-00011898  List_Init                              
-000114ec  List_Link                              
-0001115a  List_LinkItem                          
-00012d02  List_Remove                            
-00013054  List_SetIdentifyFunction               
-0001305a  List_SetSortFunction                   
-00012ffe  List_UnlinkFirst                       
-00012e88  LogStr                                 
-00013060  Log_EchoOff                            
-00013066  Log_EchoOn                             
-0001304c  Log_GetEcho                            
-00012604  Log_Header                             
+00012eae  Game_Bell                              
+000129a0  Game_CharXY                            
+00012ec4  Game_ClearScreen                       
+00011434  Game_DrawRect                          
+000130ea  Game_GameOver                          
+000130a8  Game_HideCursor                        
+00012a0a  Game_Init                              
+00012bde  Game_IsTransmitting                    
+00012502  Game_Log                               
+000128f0  Game_Printf                            
+0001206c  Game_Register                          
+00012e32  Game_RegisterCallback                  
+00013080  Game_RegisterPlayer1Receiver           
+000130b0  Game_ShowCursor                        
+0001308a  Game_UnregisterPlayer1Receiver         
+00012280  List_AddIndirect                       
+00012d0a  List_GetFirst                          
+00012e66  List_GetNext                           
+00011890  List_Init                              
+000114e4  List_Link                              
+00011152  List_LinkItem                          
+00012d6a  List_Remove                            
+000130c0  List_SetIdentifyFunction               
+000130c6  List_SetSortFunction                   
+00013074  List_UnlinkFirst                       
+00012ef0  LogStr                                 
+000130cc  Log_EchoOff                            
+000130d2  Log_EchoOn                             
+000130b8  Log_GetEcho                            
+00012670  Log_Header                             
 000004c4  MAC                                    
 000004da  MAC32H                                 
 000004db  MAC32H_H                               
@@ -917,7 +918,7 @@ address   name
 000004b6  RTCYEAR                                
 000004b7  RTCYEAR_H                              
 000004b6  RTCYEAR_L                              
-00011d1e  Return                                 
+00011e76  Return                                 
 00000100  SFRIE1                                 
 00000101  SFRIE1_H                               
 00000100  SFRIE1_L                               
@@ -972,12 +973,12 @@ address   name
 0000019a  SYSUNIV                                
 0000019b  SYSUNIV_H                              
 0000019a  SYSUNIV_L                              
-00011c30  SetClk24MHz                            
-000123fa  SetVcoreUp                             
-00012aca  Subsystem_GetName                      
-00011b3a  Subsystem_Init                         
-000120ae  Subsystem_Write                        
-00011218  SystemTick                             
+00011ca8  SetClk24MHz                            
+00012466  SetVcoreUp                             
+00012b32  Subsystem_GetName                      
+00011bb2  Subsystem_Init                         
+00012120  Subsystem_Write                        
+00011210  SystemTick                             
 00000352  TA0CCR0                                
 00000354  TA0CCR1                                
 00000356  TA0CCR2                                
@@ -1031,29 +1032,29 @@ address   name
 000003ee  TB0IV                                  
 000003d0  TB0R                                   
 00004434  TIMER0_A0_ISR                          
-00012c80  TapperGame_Init                        
-00011e02  Task_Init                              
-00011924  Task_Remove                            
-0001252e  Task_Schedule                          
-00012a0a  Terminal_CharXY                        
-00012e9e  Terminal_ClearScreen                   
-00012d5c  Terminal_HideCursor                    
-00012d78  Terminal_ShowCursor                    
-00013028  TimeNow                                
-0001278c  TimeSince                              
-00012d20  Timing_Init                            
-00012fb6  Timing_Roll                            
-00011632  UART_Init                              
-00012d3e  UART_IsTransmitting                    
+00012ce8  TapperGame_Init                        
+00011e06  Task_Init                              
+0001191c  Task_Remove                            
+0001259a  Task_Schedule                          
+00012a72  Terminal_CharXY                        
+00012f06  Terminal_ClearScreen                   
+00012dc4  Terminal_HideCursor                    
+00012de0  Terminal_ShowCursor                    
+00013094  TimeNow                                
+000127f8  TimeSince                              
+00012d88  Timing_Init                            
+0001301e  Timing_Roll                            
+0001162a  UART_Init                              
+00012da6  UART_IsTransmitting                    
 00010254  UART_ReconfigureBaud                   
-0001268c  UART_RegisterReceiver                  
-000127ca  UART_Rx_Handler                        
+000126f8  UART_RegisterReceiver                  
+00012836  UART_Rx_Handler                        
 0001080e  UART_Tick                              
-00012448  UART_Tx_Handler                        
-0001176c  UART_UnregisterReceiver                
-00012ba0  UART_WriteByte                         
-00012a3c  UART_printf                            
-00012a6e  UART_vprintf                           
+000124b4  UART_Tx_Handler                        
+00011764  UART_UnregisterReceiver                
+00012c08  UART_WriteByte                         
+00012aa4  UART_printf                            
+00012ad6  UART_vprintf                           
 000005d0  UCA0ABCTL                              
 000005c6  UCA0BRW                                
 000005c7  UCA0BRW_H                              
@@ -1295,14 +1296,14 @@ address   name
 0000441c  _UART0_ISR                             
 00004400  __STACK_END                            
 000000a0  __STACK_SIZE                           
-000048ba  __TI_CINIT_Base                        
-000048ca  __TI_CINIT_Limit                       
-000048a8  __TI_Handler_Table_Base                
-000048b4  __TI_Handler_Table_Limit               
+000048d0  __TI_CINIT_Base                        
+000048e0  __TI_CINIT_Limit                       
+000048be  __TI_Handler_Table_Base                
+000048ca  __TI_Handler_Table_Limit               
 00004442  __TI_ISR_TRAP                          
-000122b6  __TI_auto_init_nobinit_nopinit_hold_wdt
-00011ca8  __TI_decompress_lzss                   
-00012fde  __TI_decompress_none                   
+000122d4  __TI_auto_init_nobinit_nopinit_hold_wdt
+00011d20  __TI_decompress_lzss                   
+00013046  __TI_decompress_none                   
 0000ffd2  __TI_int41                             
 0000ffd4  __TI_int42                             
 0000ffd6  __TI_int43                             
@@ -1328,91 +1329,91 @@ address   name
 ffffffff  __TI_pprof_out_hndl                    
 ffffffff  __TI_prof_data_size                    
 ffffffff  __TI_prof_data_start                   
-00012bf2  __TI_zero_init                         
+00012c5a  __TI_zero_init                         
 ffffffff  __c_args__                             
-000119b0  __mspabi_cvtdf                         
-00012af6  __mspabi_divi                          
-00012f4e  __mspabi_divu                          
-00012160  __mspabi_divul                         
-00011e72  __mspabi_fixfi                         
-00011abc  __mspabi_fixfli                        
-000112d0  __mspabi_mpyf                          
-00012e2e  __mspabi_mpyi_f5hw                     
-00012c3a  __mspabi_mpyl_f5hw                     
-00012af6  __mspabi_remi                          
-00012f4e  __mspabi_remu                          
-00012160  __mspabi_remul                         
-00013032  __mspabi_slli                          
-00012840  __mspabi_slll_1                        
-0001281c  __mspabi_slll_10                       
-00012818  __mspabi_slll_11                       
-00012814  __mspabi_slll_12                       
-00012810  __mspabi_slll_13                       
-0001280c  __mspabi_slll_14                       
-00012808  __mspabi_slll_15                       
-0001283c  __mspabi_slll_2                        
-00012838  __mspabi_slll_3                        
-00012834  __mspabi_slll_4                        
-00012830  __mspabi_slll_5                        
-0001282c  __mspabi_slll_6                        
-00012828  __mspabi_slll_7                        
-00012824  __mspabi_slll_8                        
-00012820  __mspabi_slll_9                        
-0001287e  __mspabi_srll_1                        
-0001285a  __mspabi_srll_10                       
-00012856  __mspabi_srll_11                       
-00012852  __mspabi_srll_12                       
-0001284e  __mspabi_srll_13                       
-0001284a  __mspabi_srll_14                       
-00012846  __mspabi_srll_15                       
-0001287a  __mspabi_srll_2                        
-00012876  __mspabi_srll_3                        
-00012872  __mspabi_srll_4                        
-0001286e  __mspabi_srll_5                        
-0001286a  __mspabi_srll_6                        
-00012866  __mspabi_srll_7                        
-00012862  __mspabi_srll_8                        
-0001285e  __mspabi_srll_9                        
+000119a8  __mspabi_cvtdf                         
+00012b5e  __mspabi_divi                          
+00012fb6  __mspabi_divu                          
+000121d2  __mspabi_divul                         
+00011ee4  __mspabi_fixfi                         
+00011b34  __mspabi_fixfli                        
+000112c8  __mspabi_mpyf                          
+00012e96  __mspabi_mpyi_f5hw                     
+00012ca2  __mspabi_mpyl_f5hw                     
+00012b5e  __mspabi_remi                          
+00012fb6  __mspabi_remu                          
+000121d2  __mspabi_remul                         
+0001309e  __mspabi_slli                          
+000128ac  __mspabi_slll_1                        
+00012888  __mspabi_slll_10                       
+00012884  __mspabi_slll_11                       
+00012880  __mspabi_slll_12                       
+0001287c  __mspabi_slll_13                       
+00012878  __mspabi_slll_14                       
+00012874  __mspabi_slll_15                       
+000128a8  __mspabi_slll_2                        
+000128a4  __mspabi_slll_3                        
+000128a0  __mspabi_slll_4                        
+0001289c  __mspabi_slll_5                        
+00012898  __mspabi_slll_6                        
+00012894  __mspabi_slll_7                        
+00012890  __mspabi_slll_8                        
+0001288c  __mspabi_slll_9                        
+000128ea  __mspabi_srll_1                        
+000128c6  __mspabi_srll_10                       
+000128c2  __mspabi_srll_11                       
+000128be  __mspabi_srll_12                       
+000128ba  __mspabi_srll_13                       
+000128b6  __mspabi_srll_14                       
+000128b2  __mspabi_srll_15                       
+000128e6  __mspabi_srll_2                        
+000128e2  __mspabi_srll_3                        
+000128de  __mspabi_srll_4                        
+000128da  __mspabi_srll_5                        
+000128d6  __mspabi_srll_6                        
+000128d2  __mspabi_srll_7                        
+000128ce  __mspabi_srll_8                        
+000128ca  __mspabi_srll_9                        
 00004400  _c_int00_noargs                        
 00003686  _lock                                  
-00013086  _nop                                   
+000130ec  _nop                                   
 0000fffe  _reset_vector                          
 00004360  _stack                                 
-00013088  _system_post_cinit                     
-00013080  _system_pre_init                       
+000130ee  _system_post_cinit                     
+000130e6  _system_pre_init                       
 0000368a  _unlock                                
-00013072  abort                                  
+000130d8  abort                                  
 0000366e  error_flags                            
 0000366f  game_id                                
 0000368e  game_last_index                        
 00002f20  games                                  
-00012e16  hal_Timing_Init                        
-00012eb4  hal_UART_ClearRxIF                     
-00012cc2  hal_UART_DataAvailable                 
-00012eca  hal_UART_Disable                       
-00012ee0  hal_UART_DisableTxInterrupt            
-00012ef6  hal_UART_Enable                        
-00012f0c  hal_UART_EnableRxInterrupt             
-00012f22  hal_UART_EnableTxInterrupt             
+00012e7e  hal_Timing_Init                        
+00012f1c  hal_UART_ClearRxIF                     
+00012d2a  hal_UART_DataAvailable                 
+00012f32  hal_UART_Disable                       
+00012f48  hal_UART_DisableTxInterrupt            
+00012f5e  hal_UART_Enable                        
+00012f74  hal_UART_EnableRxInterrupt             
+00012f8a  hal_UART_EnableTxInterrupt             
 00010254  hal_UART_Init                          
-00012d94  hal_UART_RxByte                        
-00012ce2  hal_UART_SpaceAvailable                
-00012f38  hal_UART_TxByte                        
-00012c16  hal_UART_TxInterruptEnabled            
+00012dfc  hal_UART_RxByte                        
+00012d4a  hal_UART_SpaceAvailable                
+00012fa0  hal_UART_TxByte                        
+00012c7e  hal_UART_TxInterruptEnabled            
 00003660  idle_task                              
-000125be  main                                   
-00012fca  memcpy                                 
+0001262a  main                                   
+00013032  memcpy                                 
 0000368f  playing_id                             
-000126d0  rand                                   
-000128fa  random_int                             
+0001273c  rand                                   
+00012966  random_int                             
 0000364c  receiverList0                          
 00003654  receiver_array0                        
 00003664  rollover_time                          
 000035c6  rx0                                    
 000035a6  rx_buffer_array0                       
 00003670  rx_flags                               
-00012f64  srand                                  
-00012a9c  strcasecmp                             
+00012fcc  srand                                  
+00012b04  strcasecmp                             
 00003484  sys                                    
 00003556  task_list                              
 00002c00  task_list_array                        
@@ -2186,10 +2187,10 @@ address   name
 0000441c  _UART0_ISR                             
 00004434  TIMER0_A0_ISR                          
 00004442  __TI_ISR_TRAP                          
-000048a8  __TI_Handler_Table_Base                
-000048b4  __TI_Handler_Table_Limit               
-000048ba  __TI_CINIT_Base                        
-000048ca  __TI_CINIT_Limit                       
+000048be  __TI_Handler_Table_Base                
+000048ca  __TI_Handler_Table_Limit               
+000048d0  __TI_CINIT_Base                        
+000048e0  __TI_CINIT_Limit                       
 0000ffd2  __TI_int41                             
 0000ffd4  __TI_int42                             
 0000ffd6  __TI_int43                             
@@ -2217,146 +2218,146 @@ address   name
 00010254  hal_UART_Init                          
 0001063a  Buffer_vprintf                         
 0001080e  UART_Tick                              
-0001115a  List_LinkItem                          
-00011218  SystemTick                             
-000112d0  __mspabi_mpyf                          
-00011388  Buffer_HexN                            
-0001143c  Game_DrawRect                          
-000114ec  List_Link                              
-00011632  UART_Init                              
-000116d0  Buffer_Float                           
-0001176c  UART_UnregisterReceiver                
-00011808  Buffer_Enqueue                         
-00011898  List_Init                              
-00011924  Task_Remove                            
-000119b0  __mspabi_cvtdf                         
-00011abc  __mspabi_fixfli                        
-00011b3a  Subsystem_Init                         
-00011c30  SetClk24MHz                            
-00011ca8  __TI_decompress_lzss                   
-00011d1e  Return                                 
-00011e02  Task_Init                              
-00011e72  __mspabi_fixfi                         
-00011f3e  Buffer_uint32                          
-00011ffa  Game_Register                          
-000120ae  Subsystem_Write                        
-00012160  __mspabi_divul                         
-00012160  __mspabi_remul                         
-00012262  List_AddIndirect                       
-000122b6  __TI_auto_init_nobinit_nopinit_hold_wdt
-0001230a  Buffer_uint16                          
-000123fa  SetVcoreUp                             
-00012448  UART_Tx_Handler                        
-00012496  Game_Log                               
-0001252e  Task_Schedule                          
-000125be  main                                   
-00012604  Log_Header                             
-0001268c  UART_RegisterReceiver                  
-000126d0  rand                                   
-00012710  Buffer_Dequeue                         
-0001278c  TimeSince                              
-000127ca  UART_Rx_Handler                        
-00012808  __mspabi_slll_15                       
-0001280c  __mspabi_slll_14                       
-00012810  __mspabi_slll_13                       
-00012814  __mspabi_slll_12                       
-00012818  __mspabi_slll_11                       
-0001281c  __mspabi_slll_10                       
-00012820  __mspabi_slll_9                        
-00012824  __mspabi_slll_8                        
-00012828  __mspabi_slll_7                        
-0001282c  __mspabi_slll_6                        
-00012830  __mspabi_slll_5                        
-00012834  __mspabi_slll_4                        
-00012838  __mspabi_slll_3                        
-0001283c  __mspabi_slll_2                        
-00012840  __mspabi_slll_1                        
-00012846  __mspabi_srll_15                       
-0001284a  __mspabi_srll_14                       
-0001284e  __mspabi_srll_13                       
-00012852  __mspabi_srll_12                       
-00012856  __mspabi_srll_11                       
-0001285a  __mspabi_srll_10                       
-0001285e  __mspabi_srll_9                        
-00012862  __mspabi_srll_8                        
-00012866  __mspabi_srll_7                        
-0001286a  __mspabi_srll_6                        
-0001286e  __mspabi_srll_5                        
-00012872  __mspabi_srll_4                        
-00012876  __mspabi_srll_3                        
-0001287a  __mspabi_srll_2                        
-0001287e  __mspabi_srll_1                        
-00012884  Game_Printf                            
-000128fa  random_int                             
-0001296c  Game_CharXY                            
-000129a2  Game_Init                              
-00012a0a  Terminal_CharXY                        
-00012a3c  UART_printf                            
-00012a6e  UART_vprintf                           
-00012a9c  strcasecmp                             
-00012aca  Subsystem_GetName                      
-00012af6  __mspabi_divi                          
-00012af6  __mspabi_remi                          
-00012b22  Buffer_Init                            
-00012b4c  Buffer_int32                           
-00012b76  Game_IsTransmitting                    
-00012ba0  UART_WriteByte                         
-00012bca  DelayMs                                
-00012bf2  __TI_zero_init                         
-00012c16  hal_UART_TxInterruptEnabled            
-00012c3a  __mspabi_mpyl_f5hw                     
-00012c5e  Buffer_int16                           
-00012c80  TapperGame_Init                        
-00012ca2  List_GetFirst                          
-00012cc2  hal_UART_DataAvailable                 
-00012ce2  hal_UART_SpaceAvailable                
-00012d02  List_Remove                            
-00012d20  Timing_Init                            
-00012d3e  UART_IsTransmitting                    
-00012d5c  Terminal_HideCursor                    
-00012d78  Terminal_ShowCursor                    
-00012d94  hal_UART_RxByte                        
-00012db0  Buffer_Str                             
-00012dca  Game_RegisterCallback                  
-00012dfe  List_GetNext                           
-00012e16  hal_Timing_Init                        
-00012e2e  __mspabi_mpyi_f5hw                     
-00012e46  Game_Bell                              
-00012e5c  Game_ClearScreen                       
-00012e88  LogStr                                 
-00012e9e  Terminal_ClearScreen                   
-00012eb4  hal_UART_ClearRxIF                     
-00012eca  hal_UART_Disable                       
-00012ee0  hal_UART_DisableTxInterrupt            
-00012ef6  hal_UART_Enable                        
-00012f0c  hal_UART_EnableRxInterrupt             
-00012f22  hal_UART_EnableTxInterrupt             
-00012f38  hal_UART_TxByte                        
-00012f4e  __mspabi_divu                          
-00012f4e  __mspabi_remu                          
-00012f64  srand                                  
-00012fb6  Timing_Roll                            
-00012fca  memcpy                                 
-00012fde  __TI_decompress_none                   
-00012ffe  List_UnlinkFirst                       
-0001300a  Game_RegisterPlayer1Receiver           
-00013014  Game_UnregisterPlayer1Receiver         
-00013028  TimeNow                                
-00013032  __mspabi_slli                          
-0001303c  Game_HideCursor                        
-00013044  Game_ShowCursor                        
-0001304c  Log_GetEcho                            
-00013054  List_SetIdentifyFunction               
-0001305a  List_SetSortFunction                   
-00013060  Log_EchoOff                            
-00013066  Log_EchoOn                             
-00013072  C$$EXIT                                
-00013072  abort                                  
-00013078  Buffer_GetSize                         
-00013080  _system_pre_init                       
-00013084  Game_GameOver                          
-00013086  _nop                                   
-00013088  _system_post_cinit                     
+00011152  List_LinkItem                          
+00011210  SystemTick                             
+000112c8  __mspabi_mpyf                          
+00011380  Buffer_HexN                            
+00011434  Game_DrawRect                          
+000114e4  List_Link                              
+0001162a  UART_Init                              
+000116c8  Buffer_Float                           
+00011764  UART_UnregisterReceiver                
+00011800  Buffer_Enqueue                         
+00011890  List_Init                              
+0001191c  Task_Remove                            
+000119a8  __mspabi_cvtdf                         
+00011b34  __mspabi_fixfli                        
+00011bb2  Subsystem_Init                         
+00011ca8  SetClk24MHz                            
+00011d20  __TI_decompress_lzss                   
+00011e06  Task_Init                              
+00011e76  Return                                 
+00011ee4  __mspabi_fixfi                         
+00011fb0  Buffer_uint32                          
+0001206c  Game_Register                          
+00012120  Subsystem_Write                        
+000121d2  __mspabi_divul                         
+000121d2  __mspabi_remul                         
+00012280  List_AddIndirect                       
+000122d4  __TI_auto_init_nobinit_nopinit_hold_wdt
+00012328  Buffer_uint16                          
+00012466  SetVcoreUp                             
+000124b4  UART_Tx_Handler                        
+00012502  Game_Log                               
+0001259a  Task_Schedule                          
+0001262a  main                                   
+00012670  Log_Header                             
+000126f8  UART_RegisterReceiver                  
+0001273c  rand                                   
+0001277c  Buffer_Dequeue                         
+000127f8  TimeSince                              
+00012836  UART_Rx_Handler                        
+00012874  __mspabi_slll_15                       
+00012878  __mspabi_slll_14                       
+0001287c  __mspabi_slll_13                       
+00012880  __mspabi_slll_12                       
+00012884  __mspabi_slll_11                       
+00012888  __mspabi_slll_10                       
+0001288c  __mspabi_slll_9                        
+00012890  __mspabi_slll_8                        
+00012894  __mspabi_slll_7                        
+00012898  __mspabi_slll_6                        
+0001289c  __mspabi_slll_5                        
+000128a0  __mspabi_slll_4                        
+000128a4  __mspabi_slll_3                        
+000128a8  __mspabi_slll_2                        
+000128ac  __mspabi_slll_1                        
+000128b2  __mspabi_srll_15                       
+000128b6  __mspabi_srll_14                       
+000128ba  __mspabi_srll_13                       
+000128be  __mspabi_srll_12                       
+000128c2  __mspabi_srll_11                       
+000128c6  __mspabi_srll_10                       
+000128ca  __mspabi_srll_9                        
+000128ce  __mspabi_srll_8                        
+000128d2  __mspabi_srll_7                        
+000128d6  __mspabi_srll_6                        
+000128da  __mspabi_srll_5                        
+000128de  __mspabi_srll_4                        
+000128e2  __mspabi_srll_3                        
+000128e6  __mspabi_srll_2                        
+000128ea  __mspabi_srll_1                        
+000128f0  Game_Printf                            
+00012966  random_int                             
+000129a0  Game_CharXY                            
+00012a0a  Game_Init                              
+00012a72  Terminal_CharXY                        
+00012aa4  UART_printf                            
+00012ad6  UART_vprintf                           
+00012b04  strcasecmp                             
+00012b32  Subsystem_GetName                      
+00012b5e  __mspabi_divi                          
+00012b5e  __mspabi_remi                          
+00012b8a  Buffer_Init                            
+00012bb4  Buffer_int32                           
+00012bde  Game_IsTransmitting                    
+00012c08  UART_WriteByte                         
+00012c32  DelayMs                                
+00012c5a  __TI_zero_init                         
+00012c7e  hal_UART_TxInterruptEnabled            
+00012ca2  __mspabi_mpyl_f5hw                     
+00012cc6  Buffer_int16                           
+00012ce8  TapperGame_Init                        
+00012d0a  List_GetFirst                          
+00012d2a  hal_UART_DataAvailable                 
+00012d4a  hal_UART_SpaceAvailable                
+00012d6a  List_Remove                            
+00012d88  Timing_Init                            
+00012da6  UART_IsTransmitting                    
+00012dc4  Terminal_HideCursor                    
+00012de0  Terminal_ShowCursor                    
+00012dfc  hal_UART_RxByte                        
+00012e18  Buffer_Str                             
+00012e32  Game_RegisterCallback                  
+00012e66  List_GetNext                           
+00012e7e  hal_Timing_Init                        
+00012e96  __mspabi_mpyi_f5hw                     
+00012eae  Game_Bell                              
+00012ec4  Game_ClearScreen                       
+00012ef0  LogStr                                 
+00012f06  Terminal_ClearScreen                   
+00012f1c  hal_UART_ClearRxIF                     
+00012f32  hal_UART_Disable                       
+00012f48  hal_UART_DisableTxInterrupt            
+00012f5e  hal_UART_Enable                        
+00012f74  hal_UART_EnableRxInterrupt             
+00012f8a  hal_UART_EnableTxInterrupt             
+00012fa0  hal_UART_TxByte                        
+00012fb6  __mspabi_divu                          
+00012fb6  __mspabi_remu                          
+00012fcc  srand                                  
+0001301e  Timing_Roll                            
+00013032  memcpy                                 
+00013046  __TI_decompress_none                   
+00013074  List_UnlinkFirst                       
+00013080  Game_RegisterPlayer1Receiver           
+0001308a  Game_UnregisterPlayer1Receiver         
+00013094  TimeNow                                
+0001309e  __mspabi_slli                          
+000130a8  Game_HideCursor                        
+000130b0  Game_ShowCursor                        
+000130b8  Log_GetEcho                            
+000130c0  List_SetIdentifyFunction               
+000130c6  List_SetSortFunction                   
+000130cc  Log_EchoOff                            
+000130d2  Log_EchoOn                             
+000130d8  C$$EXIT                                
+000130d8  abort                                  
+000130de  Buffer_GetSize                         
+000130e6  _system_pre_init                       
+000130ea  Game_GameOver                          
+000130ec  _nop                                   
+000130ee  _system_post_cinit                     
 ffffffff  __TI_pprof_out_hndl                    
 ffffffff  __TI_prof_data_size                    
 ffffffff  __TI_prof_data_start                   

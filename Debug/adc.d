@@ -9,7 +9,6 @@ adc.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.5.LTS/include/sys/_types.
 adc.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.5.LTS/include/machine/_types.h
 adc.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.5.LTS/include/machine/_stdint.h
 adc.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.5.LTS/include/sys/_stdint.h
-adc.obj: C:/Users/nklei/Documents/Homework/embedded\ software/embedded-software/hal/MSP430/MSP430F5529/hal_adc.h
 adc.obj: C:/Users/nklei/Documents/Homework/embedded\ software/embedded-software/include/task.h
 adc.obj: C:/Users/nklei/Documents/Homework/embedded\ software/CCS/Klein_Game/project_settings.h
 adc.obj: C:/Users/nklei/Documents/Homework/embedded\ software/embedded-software/include/library.h
@@ -32,7 +31,6 @@ C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.5.LTS/include/sys/_types.h:
 C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.5.LTS/include/machine/_types.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.5.LTS/include/machine/_stdint.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.1.5.LTS/include/sys/_stdint.h: 
-C:/Users/nklei/Documents/Homework/embedded\ software/embedded-software/hal/MSP430/MSP430F5529/hal_adc.h: 
 C:/Users/nklei/Documents/Homework/embedded\ software/embedded-software/include/task.h: 
 C:/Users/nklei/Documents/Homework/embedded\ software/CCS/Klein_Game/project_settings.h: 
 C:/Users/nklei/Documents/Homework/embedded\ software/embedded-software/include/library.h: 

@@ -38,7 +38,7 @@ struct tapper_game_t {
     char glasses; ///< Number of glasses held
     int score; ///< score for the round
     int drinks_served; ///< drinks served during the round
-    int glasses_dropped; ///< glasses dropped during the round
+    int glasses_bussed; ///< glasses bussed during the round
     uint8_t id; ///< ID of game=
 };
 #define MAX_GLASSES 3
@@ -75,8 +75,8 @@ static void DeletePatron(char_object_t * o);
 static void DeleteFull(char_object_t * o);
 static void DeleteEmpty(char_object_t * o);
 static void ScorePoint(void);
-static void LosePoint(void);
 static void UpdateGlasses(void);
+static void ShowScore(void);
 
 void TapperGame_Init(void) {
     // Register the module with the game system and give it the name "TAPPER3"
@@ -124,13 +124,14 @@ void Play(void) {
     game.glasses = MAX_GLASSES;
     game.score = 0;
     game.drinks_served = 0;
-    game.glasses_dropped = 0;
+    game.glasses_bussed = 0;
     // draw the bartender at the bottom right of the map
     Game_CharXY(game.c, MAP_WIDTH - 1, game.y);
     Game_RegisterPlayer1Receiver(Receiver);
     // hide cursor
     Game_HideCursor();
     UpdateGlasses();
+    ShowScore();
     // send first patron in 5 seconds
     // period is 0 because the task is rescheduled new each time at random intervals
     Task_Schedule(SendPatron, 0, 5000, 0);
@@ -203,7 +204,7 @@ void Return(char_object_t * full) {
     for(i = 0; i < 2*MAX_GLASSES; i++) if(EMPTY_GLASSES[i].status == 0) empty = &EMPTY_GLASSES[i];
     // change the status of the shot to indicate that it is used
     empty->status = 1;
-    empty->x = full->x++;
+    empty->x = full->x+2;
     empty->y = full->y;
     empty->c = 'u';
     Task_Schedule((task_t)MoveRightGlass, empty, FIRE_SPEED*2, FIRE_SPEED*2);
@@ -346,7 +347,7 @@ void CheckCollisionPatron(char_object_t * patron) {
                 DeleteFull(full);
                 // put a c where the collision happened
                 Game_CharXY('c', patron->x, patron->y);
-                ScorePoint();
+                game.drinks_served++;
                 ScorePoint();
             }
         }
@@ -365,9 +366,8 @@ void CheckCollisionFull(char_object_t * full) {
                 DeleteFull(full);
                 // put a c where the collision happened
                 Game_CharXY('c', patron->x, patron->y);
-                ScorePoint();
-                ScorePoint();
                 game.drinks_served++;
+                ScorePoint();
             }
         }
         patron = &patrons2[i];
@@ -378,9 +378,8 @@ void CheckCollisionFull(char_object_t * full) {
                 DeleteFull(full);
                 // put a c where the collision happened
                 Game_CharXY('c', patron->x, patron->y);
-                ScorePoint();
-                ScorePoint();
                 game.drinks_served++;
+                ScorePoint();
             }
         }
         patron = &patrons3[i];
@@ -391,9 +390,8 @@ void CheckCollisionFull(char_object_t * full) {
                 DeleteFull(full);
                 // put a c where the collision happened
                 Game_CharXY('c', patron->x, patron->y);
-                ScorePoint();
-                ScorePoint();
                 game.drinks_served++;
+                ScorePoint();
             }
         }
     }
@@ -404,25 +402,21 @@ void CheckCollisionEmpty(char_object_t * empty) {
     if (empty->x >= MAP_WIDTH-1) {
         if (game.y == empty->y) {
             DeleteFull(empty);
+            game.glasses_bussed++;
             ScorePoint();
-            Game_CharXY(game.c, MAP_WIDTH - 1, game.y);
         }
         else {
             DeleteFull(empty);
-            LosePoint();
-            game.glasses_dropped++;
         }
     }
+    Game_CharXY(game.c, MAP_WIDTH - 1, game.y);
 }
 
 void ScorePoint(void) {
     game.score++;
     // sound the alarm
     Game_Bell();
-}
-
-void LosePoint(void) {
-    game.score--;
+    ShowScore();
 }
 
 // if o is 0 then delete all enemies
@@ -452,13 +446,23 @@ void DeleteEmpty(char_object_t * o) {
 void UpdateGlasses(void) {
     Game_CharXY('\r', 0, MAP_HEIGHT + 2);
     Game_Printf("Glasses: ");
-    volatile uint8_t i;
     if(game.glasses >= 3) Game_Printf("U U U");
     else if(game.glasses == 2) Game_Printf("U U  ");
     else if(game.glasses == 1) Game_Printf("U    ");
     else if(game.glasses == 0) Game_Printf("     ");
 
     game.c = 't';
+}
+
+void ShowScore(void) {
+    Game_CharXY('\r', 0, MAP_HEIGHT + 3);
+    Game_Printf("Score: ");
+    Game_Printf("%i", game.score);
+    Game_CharXY('\r', 0, MAP_HEIGHT + 4);
+    Game_Printf("Served: ");
+    Game_Printf("%i", game.drinks_served);
+    Game_Printf("    Bussed: ");
+    Game_Printf("%i", game.glasses_bussed);
 }
 
 void GameOver(void) {
@@ -471,7 +475,7 @@ void GameOver(void) {
     // set cursor below bottom of map
     Game_CharXY('\r', 0, MAP_HEIGHT + 1);
     // show score
-    Game_Printf("Game Over! Final score: %d\r\n", game.score);
+    Game_Printf("Game Over!\r\n");
     //Game_Printf("Game Over! Final score: %d\r\nTotal Drinks Served: %d", game.score, game.drinks_served);
     // unregister the receiver used to run the game
     Game_UnregisterPlayer1Receiver(Receiver);
